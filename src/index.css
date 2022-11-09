@@ -7,20 +7,30 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+a {
+  text-decoration: none;
+  color: white;
+}
 
 .main-section {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 500px;
 }
 .nav-bar {
   padding: 10px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background-color: rgba(219, 159, 80, 0.886);
+  justify-content: center;
+  background-color: #222;
   color: white;
+  font-size: 22px;
   font-family: 'Poppins', sans-serif;
+}
+.nav-bar h2 {
+  margin: 10px 0;
+  text-align: center;
 }
 .nav-bar img {
   width: 30px;
@@ -63,9 +73,10 @@ body {
   background-repeat: no-repeat;
   background-size: 20px 20px;
 }
-.selection-area button {
+.styled-button {
   padding: 5px 10px;
-  background-color: rgba(131, 131, 226, 0.697);
+  background-color: #222;
+  color: #eee;
   border: none;
 
   font-family: 'Poppins', sans-serif;
@@ -109,7 +120,39 @@ input[type='file'] {
   flex-direction: column;
   padding: 10px;
   height: 250px;
-  width: 300px;
+  /* width: 300px; */
   margin: 10px;
   border-radius: 10px;
+}
+
+.recommandation-section {
+  /* width: 500px; */
+  /* height: 600px; */
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 10px;
+  padding: 10px;
+}
+.description-section {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 10px;
+  max-width: 500px;
+  padding: 10px;
+}
+
+.prediction-section {
+  padding: 10px;
+}
+.conatiner {
+  padding-bottom: 500px;
+}
+
+.select-dropdown {
+  margin: 10px 0px;
+  z-index: 7;
+}
+
+#react-select-5-listbox {
+  color: red;
 }
