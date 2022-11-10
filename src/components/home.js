@@ -14,6 +14,7 @@ const Home = () => {
   ];
   const [file, setfile] = useState(null);
   const [result, setResult] = useState(null);
+  const [selectedOption, setSelectedOption] = useState('');
 
   const uploadImage = async () => {
     console.log(file);
@@ -25,13 +26,13 @@ const Home = () => {
     console.log(formData);
     // const res = await axios({
     //   method: 'post',
-    //   url: 'http://localhost:8000/',
+    //   url: `http://localhost:8000/${selectedOption.value.toLowerCase()}`,
     //   data: formData
     // });
     const res = {
       data: {
         class: 'Potato__Black_rot',
-        confidence: 1.0,
+        confidence: 95.0,
         supplement: {
           name: 'marundhu',
           image_url: 'image.png',
@@ -63,7 +64,11 @@ const Home = () => {
             onChange={(e) => setfile(e.target.files[0])}
           />
           <div className="select-dropdown">
-            <Select options={options} />
+            <Select
+              defaultValue={selectedOption}
+              onChange={setSelectedOption}
+              options={options}
+            />
           </div>
           <button className="styled-button" onClick={uploadImage}>
             Upload
