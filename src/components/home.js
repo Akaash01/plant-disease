@@ -38,35 +38,16 @@ const Home = () => {
     console.log(file);
 
     const formData = new FormData();
-    formData.append('image', file, file.name);
-    const text = 'disease';
-    formData.append('text', text);
+    formData.append("file", file);
     console.log(formData);
     setIsLoading(true);
-    // const res = await axios({
-    //   method: 'post',
-    //   url: `http://localhost:8000/${selectedOption.value.toLowerCase()}`,
-    //   data: formData
-    // });
-    const res = {
-      data: {
-        class: 'Potato__Black_rot',
-        confidence: 95.0,
-        plant_info:
-          'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid, quidem earum exercitationem velit fuga praesentium '
-        // supplement: {
-        //   name: 'marundhu',
-        //   image_url:
-        //     'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRfq9MLrPL9tFkuFbGb98fMGDdl67v4I2iDLYCVprdsdGaXURCl9UNEr8v_65X1hKrYF5NjSvB01HOGexg-3CJxjkVSu9zPNJ2AunP09vPa0gjEILskTILx&usqp=CAE',
-        //   buy_link:
-        //     'https://agribegri.com/products/buy-propiconazole--25-ec-systematic-fungicide-online-.php'
-        // },
-        // disease_brief:
-        //   ' Apple scab is the most common disease of apple and crabapple trees in Minnesota. Scab is caused by a fungus that infects both leaves and fruit. Scabby fruit are often unfit for eating. Infected leaves have olive green to brown spots.   Leaves with many leaf spots turn yellow and fall off early. Leaf loss weakens the tree when it occurs many years in a row. Planting disease resistant varieties is the best way to manage scab.'
-      }
-    };
+    const res = await axios({
+      method: 'post',
+      url: `http://localhost:8000/predict/${selectedOption.value.toLowerCase()}`,
+      data: formData
+    });
     setResult(res.data);
-    setTimeout(() => setIsLoading(false), 3000);
+    setIsLoading(false)
   };
   return (
     <div className="container">
@@ -111,8 +92,9 @@ const Home = () => {
                   <div className="result-card">
                     <div className="progressBar">
                       <CircularProgressbar
-                        value={result.confidence}
-                        text={`${result.confidence}%`}
+                        value={Math.round(result.confidence * 10000)/100}
+                        text={`${(Math.round(result.confidence * 10000)/100
+                        )}%`}
                       />
                     </div>
                     <h3>{result.class}</h3>
